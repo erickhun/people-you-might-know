@@ -1,9 +1,8 @@
 people-you-might-know
 =====================
-
-	Personal algorithm to find people you might know inspired by what I can feel on Facebook and Linkedin.
-	I did it for  a technical test within 5 hours.
-	I know this is not perfect, I'll try to improve it later.
+Personal algorithm to find people you might know inspired by what I can feel on Facebook and Linkedin.
+I did it for  a technical test within 5 hours.
+I know this is not perfect, I'll try to improve it later.
 
 How does it work?
 =====================
