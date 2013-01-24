@@ -6,15 +6,6 @@ require_once 'config.php';
 
 class	PeopleYouMightKnow {
   
-    const WEIGHT_COMMONFRIEND = 1;
-    const WEIGHT_LOCATION     = 1;
-    const WEIGHT_SCHOOL       = 2;
-    const WEIGHT_WORK         = 3;
-
-    const WEIGHT_TAG          = 5;
-    const WEIGHT_SEEN         = 3;
-    const WEIGHT_BIRTH        = 3;
-  
     private $iIdUser;
     private $aUsers = array();
     private $aFriends = array();
@@ -38,37 +29,6 @@ class	PeopleYouMightKnow {
       $this->setScore();
     }
 
-    public function show($limit = 5) {
-      
-      $name = $this->aUsers[$this->iIdUser]['firstname'] . ' ' . $this->aUsers[$this->iIdUser]['lastname'] ;
-      $show = "People $name Might Know\n";
-
-      $i = 0;
-      foreach ($this->aKnows as $aKnow) {
-        if ($i >= $limit)
-          break;
-        
-        $id = $aKnow['id'];
-        echo $this->aUsers[$id]['firstname'] . ' '.$this->aUsers[$id]['lastname']."\n";
-        echo "Score: ". $aKnow['score']. "\n";
-        echo "Commons friends: ". $aKnow['commons']. "\n";
-        if ($aKnow['work'])
-          echo "Same society: ". $this->aUsers[$id]['work']. "\n";
-        if ($aKnow['location'])
-          echo "Same location: ". $this->aUsers[$id]['location']. "\n";
-        if ($aKnow['school'])
-          echo "Same School: ". $this->aUsers[$id]['school']. "\n";
-        if ($aKnow['tags'])
-          echo "Tagged together: ". $aKnow['tags']. "\n";
-        if ($aKnow['birthdate'])
-          echo "Same rank age\n";
-        echo "\n\n";
-        $i++;
-      }
-      
-
-    }
-    
     /*
      * We set the rules defining why people might know each other
      * Higher is the score, higher people may know each other
@@ -201,8 +161,38 @@ class	PeopleYouMightKnow {
                                           "seen" =>       false);        
         $this->aKnows[$iIdUser][$sCriteria] = $bValue;
       }
-    }    
-    
+    }
+
+    public function show($limit = 5) {
+      
+      $name = $this->aUsers[$this->iIdUser]['firstname'] . ' ' . $this->aUsers[$this->iIdUser]['lastname'] ;
+      echo "\nPeople $name Might Know:\n\n";
+
+      $i = 0;
+      foreach ($this->aKnows as $aKnow) {
+        if ($i >= $limit)
+          break;
+        
+        $id = $aKnow['id'];
+        echo $this->aUsers[$id]['firstname'] . ' '.$this->aUsers[$id]['lastname']."\n";
+        echo "Score: ". $aKnow['score']. "\n";
+        echo "Commons friends: ". $aKnow['commons']. "\n";
+        if ($aKnow['work'])
+          echo "Same society: ". $this->aUsers[$id]['work']. "\n";
+        if ($aKnow['location'])
+          echo "Same location: ". $this->aUsers[$id]['location']. "\n";
+        if ($aKnow['school'])
+          echo "Same School: ". $this->aUsers[$id]['school']. "\n";
+        if ($aKnow['tags'])
+          echo "Tagged together: ". $aKnow['tags']. "\n";
+        if ($aKnow['birthdate'])
+          echo "Same rank age\n";
+        echo "\n\n";
+        $i++;
+      }
+    }
+
+
     public function	loadUsers($sPath) {
       $oCsv = $this->loadCSV($sPath);
       $aTmpUsers = $oCsv->connect();
@@ -272,6 +262,7 @@ class	PeopleYouMightKnow {
           unset ($this->aKnows[$iFriends]);
       }
     }
+
   }
   
 ?>
