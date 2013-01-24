@@ -1,11 +1,6 @@
-people-you-might-know
-=====================
 
-Personal algorithm to find people you might know 
-I did it for  a technical test within 4 hours.
-I know this is not perfect, I'll try o improve it later.
+1. Explain how this function works and how it can be implemented
 
-How does it work?
 	We can find people we might know with comparing the following criterias: 
 		- Work
 		- School
@@ -14,17 +9,16 @@ How does it work?
 		- Profile visiting
 		- Tagged pictures together
 		- Age range
+		
 
+2. Implement a simple example that shows the general algorithm for a simple friend finder.
+		I implemented the algorithm with the criterias  I mentionned.
+		You can launch it via a console:
+			php index.php [user_id] [nb_show]
+				[user_id] is the iduser's you want see possible match
+				[nb_show] how many matches you want see
 
-What the script do
-	- I "emulate" a database in csv files. 
-
-
-How run run the script?
-	You can launch it via a console:
-		php index.php [user_id] [nb_show]
-			[user_id] is the iduser's you want see possible match
-			[nb_show] how many matches you want see
+3. Explain your implementation and why you chose to implement it the way you did. Also discuss how it could be improved with more work.
 
 	Algorithm:
 		- We give weight to each criteria (config.php)
@@ -42,21 +36,23 @@ How run run the script?
 			Of course the scoring is completely arbitrary. For example, I decide:
 				If they were tagged together, I multiply the weight * number of picture together
 
-		Some optimisations I did: 
-			- setting the value as a key of the array and using isset instead of searching everytime in array is much faster (pymk.php, line 181, 103)
-			- isset is faster than array_keys_exist
-		Some optimisation I could do:
-			- Only iterate one time on every user.
-			- Find friends level 2
-			- Find interrests of people
-			- A better scoring system
-			- How many comment the user publish on your account (if public profile)
-			- If you're friend a long time with someone, we can suggest you some random friends
+	Some optimisations I did: 
+		- setting the value as a key of the array and using isset instead of searching everytime in array is much faster (pymk.php, line 181, 103)
+		- isset is faster than array_keys_exist
+	Some optimisation I could do:
+		- Only iterate one time on every user.
+		- Find friends level 2
+		- Find interrests of people
+		- A better scoring system
+		- How many comment the user publish on your account (if public profile)
+		- If you're friend a long time with someone, we can suggest you some random friends
 
 
 				
-	Recommandations for huge database:
-	
+
+4. Explain how to implement this function so that it works efficiently even with a database consisting
+of millions of users.
+
 	- On bigger database we couldnt iterate on every users. The best choice is to limit it to level 3 connecition of the users.
 	- Use memcached to store value, and avoid the repetitive databases requests.
 	- A good code is not enough to support millions of users, a good server architecture is also required. I would suggest:
