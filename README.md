@@ -16,16 +16,13 @@ How does it work?
 		- Tagged pictures together
 		- Age range
 
-
-	How it works?
-	=====================
-	- I "emulate" a database in csv files
-	- Then, 
+	I "emulate" a database in csv files
+	Then I run the algo
 
 
 Run the script
 =====================
-	You can launch it via a termincal:
+	You can launch it via a terminal:
 		php index.php [user_id] [nb_show]
 			[user_id] is the iduser's you want see possible match
 			[nb_show] how many matches you want see
